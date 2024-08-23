@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login and Registration Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+         body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            font-family: Arial, sans-serif; /* Ensure consistent font across elements */
+        }
+
+        header {
+            width: 100%;
+            max-width: 900px; /* Match with .form-container width */
+            margin: 0 auto; /* Center horizontally */
+            box-sizing: border-box; /* Include padding and border in width calculation */
+        }
+
+        .header-content {
+            width: 100%;
+            max-width: 900px; /* Match with .form-container width */
+            margin: 0 auto; /* Center horizontally */
+            box-sizing: border-box; /* Include padding and border in width calculation */
+        }
+
+        .header-content img {
+            display: block;
+            width: 100%; /* Make image responsive */
+            height: auto; /* Maintain aspect ratio */
+            background-size: cover; /* Cover the width of the header */
+        }
+
+        .header-content h3 {
+            background-color: black; /* Set background color to black */
+            color: white; /* Ensure text color is readable on black background */
+            text-align: center;
+            margin: 0;
+            padding: 10px;
+            font-size: 24px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .form-container {
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
+            border-radius: 8px;
+            background-color: white;
+            margin: 20px auto;
+            max-width: 900px;
+        }
+
+        .form-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .form-note {
+            font-size: 16px;
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            position: relative;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .input {
+            width: 100%;
+            height: 50px;
+            padding: 14px;
+            font-size: 16px;
+            border: 1px solid #DADCE0;
+            border-radius: 4px;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .input:focus {
+            border-color: #007bff;
+            background-color: #ffffff;
+        }
+
+        .label {
+            position: absolute;
+            top: 50%;
+            left: 14px;
+            transition: 0.3s;
+            transform: translateY(-50%);
+            background: white;
+            padding: 0 5px;
+            font-size: 16px;
+            color: #aaa;
+        }
+
+        .input:focus + .label,
+        .input:not(:placeholder-shown) + .label {
+            top: -10px;
+            left: 14px;
+            transform: translateY(0);
+            font-size: 14px;
+            color: #007bff;
+        }
+
+        textarea.input {
+            height: 100px;
+            padding: 14px;
+        }
+
+        select.input {
+            height: 50px;
+            padding: 0 14px;
+        }
+
+        .btn-danger, .btn-success {
+            font-size: 16px;
+        }
+
+        .form-row {
+            margin-bottom: 20px;
+        }
+
+        .phone-group {
+        display: flex;
+        width: 100%;
+        position: relative;
+    }
+
+    .phone-prefix {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+        background-color: white;
+        border: 1px solid #DADCE0;
+        border-radius: 4px 0 0 4px;
+        background-color: #f8f9fa;
+        height: 50px;
+    }
+
+    .input-phone {
+        border-radius: 0 4px 4px 0;
+        flex-grow: 1;
+        text-transform: none;
+        height: 50px;
+        padding-left: 14px;
+        position: relative;
+        z-index: 1;
+        text-align: left;
+    }
+
+    /* Align the label to the beginning of the input box */
+    .phone-group .label {
+        position: absolute;
+        top: 50%;
+        left: 50px; /* Align to the left with a small padding */
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: #aaa;
+        pointer-events: none;
+        background-color: white;
+        padding: 0 5px;
+        z-index: 2;
+    }
+
+    .phone-group .input-phone:focus + .label,
+    .phone-group .input-phone:not(:placeholder-shown) + .label {
+        top: -10px;
+        left: 14px;
+        transform: translateY(0);
+        font-size: 14px;
+        color: #007bff;
+    }
+
+    .phone-group .input:focus + .label,
+    .phone-group .input:not(:placeholder-shown) + .label {
+        top: -10px;
+        left: 14px;
+        transform: translateY(0);
+        font-size: 14px;
+        color: #007bff;
+    }
+
+        .input-email {
+            width: 100%;
+        }
+
+        .mandatory {
+            color: red;
+        }
+
+        .form-container {
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(92, 99, 105, .2);
+    border-radius: 8px;
+    background-color: white;
+    margin: 20px auto; /* Center the form horizontally */
+    max-width: 900px; /* Ensure form container width aligns with header and content */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+        .footer-wrapper {
+            width: 100%;
+            max-width: 900px; /* Match with form container width */
+            margin: 20px auto; /* Center horizontally */
+            box-sizing: border-box; /* Include padding and border in width calculation */
+        }
+
+        .footer-container {
+            text-align: center;
+            color: white;
+            background-color: #3e3636;
+            padding: 10px;
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer-container p {
+            margin: 0; /* Remove default margin */
+            font-size: 14px; /* Adjust font size as needed */
+        }
+
+        .footer-container b {
+            font-weight: bold; /* Make the text bold */
+        }
+
+        .form-container {
+            margin: 20px auto;
+            max-width: 900px;
+        }
+
+        .blink_me {
+        animation: blinker 1s linear infinite;
+        color: #135b28;
+        font-weight: 500;
+    }
+
+    @keyframes blinker {
+        60% {
+            opacity: 0;
+        }
+    }
+
+    .password-toggle {
+        position: absolute;
+        top: 50%;
+        right: 14px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #aaa;
+    }
+
+    .password-toggle:hover {
+        color: #007bff;
+    }
+
+    .forgot-password-link {
+    text-align: right; /* Align text to the right */
+    margin-top: 10px; /* Add some space above the link */
+    }
+
+    .forgot-password-link a {
+        text-decoration: none; /* Remove underline from the link */
+        color: #007bff; /* Set the link color (adjust as needed) */
+    }
+
+    .forgot-password-link a:hover {
+        text-decoration: underline; /* Add underline on hover */
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="new_header1.png" alt="Header Image">
+            <h3>Student Login and Signup Form</h3>
+        </div>
+    </header>
+<div class="form-container" oncontextmenu="return false;">
+    <div class="btn-container text-center mb-4">
+        <button id="loginBtn" class="col-sm-2 btn btn-primary btn-toggle btn-lg">Login</button>
+        <button id="signupBtn" class="col-sm-2 btn btn-secondary btn-toggle btn-lg">Signup</button>
+        <button id="forgotPasswordBtn" class="col-sm-4 btn btn-secondary btn-toggle btn-lg">Forgot Password</button>
+    </div>
+
+    <div id="loginForm">
+        <h4 class="form-title" style="text-align: center;">Login</h4>
+        <form autocomplete="off">
+            <div class="input-container">
+                <input type="email" id="loginEmail" class="input" placeholder=" " required>
+                <label for="loginEmail" class="label">Email <span class="mandatory">*</span></label>
+            </div>
+            <div class="input-container">
+                <input type="password" class="input" id="login-password" placeholder=" " required>
+                        <label for="login-password" class="label">Password <span class="mandatory">*</span></label>
+                        <i class="password-toggle fas fa-eye" id="toggleLoginPassword"></i>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <button type="reset" class="btn btn-danger btn-block">RESET</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success btn-block">LOGIN</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="forgotPasswordForm" style="display: none;">
+        <h4 class="form-title" style="text-align: center;">Forgot Password</h4>
+        <form autocomplete="off" method="post" action="/forgot_password">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="input-container">
+                        <input type="text" id="forgotFacultyID" class="input" placeholder=" " required>
+                        <label for="forgotFacultyID" class="label">University Seat Number <span class="mandatory">*</span></label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-container">
+                        <input type="text" id="forgotName" class="input" placeholder=" " required>
+                        <label for="forgotName" class="label">Name <span class="mandatory">*</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <div class="input-container">
+                        <input type="date" id="forgotDOB" class="input" placeholder=" " required>
+                        <label for="forgotDOB" class="label">Date of Birth <span class="mandatory">*</span></label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-container">
+                        <input type="email" id="forgotEmail" class="input" placeholder=" " required>
+                        <label for="forgotEmail" class="label">Email <span class="mandatory">*</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-block">Send Reset Link</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="signupForm" style="display:none;">
+        <h4 class="form-title" style="text-align: center;">Signup</h4>
+        <form autocomplete="off">
+            <div class="form-row">
+                <div class="col-md-6 input-container">
+                    <input type="text" class="input" id="usn" placeholder=" " required>
+                    <label for="usn" class="label">University Seat Number (USN) <span class="mandatory">*</span></label>
+                </div>
+                <div class="col-md-6 input-container">
+                    <input type="text" class="input" id="name" autocomplete="off" placeholder=" " required>
+                    <label for="name" class="label">Name <span class="mandatory">*</span></label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 input-container">
+                    <select class="input" id="college" required>
+                        <option value="" disabled selected hidden>Select</option>
+                        <option value="AA">AA -  ACHARYAR NRV SCHOOL OF ARCHITECTURE   BANGALORE </option>
+                        <option value="AB">AB -  ANJUMAN ENGINEERING COLLEGE   BHATKAL </option>
+                        <option value="AC">AC -  ALPHA COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="AD">AD -  ATME COLLEGE OF ENGINEERING   MYSORE </option>
+                        <option value="AE">AE -  APPA INSTITUTE OF ENGINEERING & TECHNOLOGY   GULBARGA </option>
+                        <option value="AF">AF -  AIRFORCE TECHNICAL COLLEGE  JALAHALLI WEST </option>
+                        <option value="AG">AG -  ANGADI INSTITUTE OF TECHNOLOGY & MANAGEMENT   BELGAVI </option>
+                        <option value="AH">AH -  ACS COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="AI">AI -  ADICHUNCHANAGIRI INSTITUTE OF TECHNOLOGY   CHICKMAGALUR </option>
+                        <option value="AJ">AJ - CAMBRIDGE INSTITUTE OF TECHNOLOGY NORTH CAMPUS, BANGALORE</option>
+                        <option value="AK">AK -  AKSHAYA INSTITUTE OF TECHNOLOGY  TUMKUR. </option>
+                        <option value="AL">AL -  ALVA 'S INSTITUTE OF ENGINEERING AND TECHNOLOGY   MOODBIDRI </option>
+                        <option value="AM">AM -  A.M.C. ENGINEERING COLLEGE   BANGALORE </option>
+                        <option value="AN">AN -  ADITHYA ACADEMY OF ARCHITECTURE AND DESIGN   BENGALURU </option>
+                        <option value="AO">AO -  ACHUTHA INSTITUTE OF TECHNOLOGY   CHIKKABALLAPUR </option>
+                        <option value="AP">AP -  A.P.S COLLEGE OF ENGINEERING   SOMANAHALLI </option>
+                        <option value="AQ">AQ -  A.M.C. ENGINEERING COLLEGE   BANGALORE </option>
+                        <option value="AR">AR -  AMRUTA INSTITUTE OF ENGINEERING AND MGMT. SCIENCES   BANGALORE </option>
+                        <option value="AS">AS -  AMRITA INSTITUTE OF TECHNOLOGY & SCIENCE   BANGALORE </option>
+                        <option value="AT">AT -  ATRIA INSTITUTE OF TECHNOLOGY   ANAND NAGAR </option>
+                        <option value="AU">AU -  NANDI INSTITUTE OF TECHNOLOGY AND MANAGEMENT SCIENCES   BANGALORE </option>
+                        <option value="AV">AV -  AGM RURAL COLLEGE OF ENGINEERING AND TECHNOLOGY   VARUR </option>
+                        <option value="AW">AW -  A.M.C. ENGINEERING COLLEGE   BANGALORE </option>
+                        <option value="AX">AX -  A.M.C. ENGINEERING COLLEGE   BANGALORE </option>
+                        <option value="AY">AY -  ACHARYA INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="AZ">AZ -  ACHARYA INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="BA">BA -  BASAVESHWAR ENGINEERING COLLEGE   BAGALKOT </option>
+                        <option value="BB">BB -  BAHUBALI COLLEGE OF ENGINEERING   SHRAVANABELAGOLA </option>
+                        <option value="BC">BC -  BANGALORE COLLEGE OF ENGINEERING AND TECHNOLOGY   CHANDAPUR </option>
+                        <option value="BD">BD -  BAPUJI INSTITUTE OF ENGINEERING & TECHNOLOGY   DAVANGERE </option>
+                        <option value="BE">BE -  B.M.S. EVENING COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="BF">BF -  B.M.S. COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="BG">BG -  B.N.M. INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="BH">BH -  BANGALORE TECHNOLOGICAL INSTITUTE   BANGALORE </option>
+                        <option value="BI">BI -  BANGALORE INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="BJ">BJ -  SRI BHAGAWAN MAHAVEER JAIN COLLEGE OF ENGG.  B'LORE RURAL DIST. </option>
+                        <option value="BK">BK -  BASAVAKALYAN ENGINEERING COLLEGE   BASAVAKALYAN </option>
+                        <option value="BL">BL -  B.L.D.E.A'S DR. P.G. HALAKATTI COLLEGE OF ENGG. & TECH.   BIJAPUR </option>
+                        <option value="BM">BM -  B.M.S. COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="BN">BN -  SRI BELIMATHA MAHASAMSTHANA INSTITUTE OF TECHNOLOGY   NELAMANGALA </option>
+                        <option value="BO">BO -  BRINDAVAN COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="BP">BP -  BEARY' S INSTITUTE OF TECHNOLOGY   MANGALORE </option>
+                        <option value="BQ">BQ -  BMS SCHOOL OF ARCHITECTURE  BANGALORE </option>
+                        <option value="BR">BR -  BALLARI INSTITUTE OF TECHNOLOGY & MANAGEMENT   BELLARY </option>
+                        <option value="BS">BS -  BASAVA ACADEMY OF ENGINEERING   BANGALORE </option>
+                        <option value="BT">BT -  B.T.L. INSTITUTE OF TECHNOLOGY AND MANAGEMENT   BANGALORE </option>
+                        <option value="BU">BU -  S G BALEKUNDRI INSTITUTE OF TECHNOLOGY   BELGAUM </option>
+                        <option value="BV">BV -  B.V. BHOOMARADDI COLLEGE OF ENGINEERING & TECHNOLOGY   HUBLI </option>
+                        <option value="BW">BW -  B.G.S INSTITUTE OF TECHNOLOGY   BALAGANGADHARANATHA NAGAR </option>
+                        <option value="BX">BX -  BCET   CHANDAPUR </option>
+                        <option value="BY">BY -  B.M.S. INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="BZ">BZ -  BAPUJI INSTITUTE OF ENGINEERING & TECHNOLOGY   DAVANGERE </option>
+                        <option value="CA">CA -  CAUVERY INSTITUTE OF TECHNOLOGY   MANDYA </option>
+                        <option value="CB">CB -  CANARA ENGINEERING COLLEGE   BANTWAL </option>
+                        <option value="CC">CC -  DR. SRI SHIVAKUMARA MAHASWAMY COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="CD">CD -  CAMBRIDGE INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="CE">CE -  CITY ENGINEERING COLLEGE   BANGALORE </option>
+                        <option value="CF">CF -  BMS COLLEGE OF ARCHITECTURE  BENGALURU </option>
+                        <option value="CG">CG -  CHANNABASAVESHWARA INSTITUTE OF TECHNOLOGY   GUBBI </option>
+                        <option value="CI">CI -  COORG INSTITUTE OF TECHNOLOGY   PONNAMPET  </option>
+                        <option value="CK">CK -  C.BYREGOWDA INSTITUTE OF TECHNOLOGY   KOLAR. </option>
+                        <option value="CM">CM - WADIYAR CENTRE FOR ARCHITECTURE MYSURU</option>
+                        <option value="CR">CR -  C.M.R. INSTITUTE OF TECHNOLOGY   KUNDAL HALLI </option>
+                        <option value="CS">CS -  SHARADA SCHOOL OF ARCHITECTURE   BANGALORE </option>
+                        <option value="CX">CX -  CAMBRIDGE INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="CY">CY -  C.M.R. INSTITUTE OF TECHNOLOGY   KUNDAL HALLI </option>
+                        <option value="CZ">CZ -  CITY ENGINEERING COLLEGE   BANGALORE </option>
+                        <option value="DA">DA -  DR. AMBEDKAR INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="DB">DB -  DON BOSCO INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="DC">DC - DAYANAND SAGAR SCHOOL OF ARCHITECTURE</option>
+                        <option value="DM">DM - YENEPOYA INSTITUTE OF TECHNOLOGY, MOODBIDRI </option>
+                        <option value="DS">DS -  DAYANANDA SAGAR COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="DT">DT -  DAYANANDA SAGAR ACADEMY OF TECHNOLOGY AND MGMT.   BANGALORE </option>
+                        <option value="DY">DY -  DAYANANDA SAGAR COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="EA">EA -  AAKAR ACADEMY OF ARCHITECTURE   BANGALORE </option>
+                        <option value="EB">EB -  BANGALORE INSTITUTE OF TECHNOLOGY (EVENING)   BANGALORE </option>
+                        <option value="EC">EC -  EAST POINT COLLEGE OF ENGG. AND TECHNOLOGY FOR WOMEN   BANGALORE </option>
+                        <option value="ED">ED -  BEARY'S ENVIRO ARCHITECTURE DESIGN SCHOOL   MANGALURU </option>
+                        <option value="EE">EE -  EAST WEST COLLEGE OF ENGINEERING   BENGALURU </option>
+                        <option value="EK">EK -  EKALAVYA INSTITUTE OF TECHNOLOGY   CHAMARAJANAGAR </option>
+                        <option value="EP">EP -  EAST POINT COLLEGE OF ENGINEERING AND TECHNOLOGY   BANGALORE </option>
+                        <option value="ES">ES -  SRINIVAS SCHOOL OF ENGINEERING   MANGALORE </option>
+                        <option value="EW">EW -  EAST WEST INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="EX">EX -  EAST WEST INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="FA">FA -  AIRFORCE TECHNICAL COLLEGE  JALAHALLI WEST </option>
+                        <option value="FZ">FZ -  AIRFORCE TECHNICAL COLLEGE  JALAHALLI WEST </option>
+                        <option value="GA">GA -  GLOBAL ACADEMY OF TECHNOLOGY   BANGALORE </option>
+                        <option value="GB">GB -  GOVERNMENT ENGINEERING COLLEGE   HUVINA HADAGALI </option>
+                        <option value="GC">GC -  GHOUSIA COLLEGE OF ENGINEERING   RAMANAGARAM </option>
+                        <option value="GD">GD -  GOPALAN COLLEGE OF ENGINEERING AND MANAGEMENT   BANGALORE </option>
+                        <option value="GE">GE -  GOVERNMENT ENGINEERING COLLEGE   CHAMARAJANAGARA </option>
+                        <option value="GF">GF -  GODUTAI ENGINEERING COLLEGE FOR WOMEN   GULBARGA </option>
+                        <option value="GG">GG -  GOVERNMENT ENGINEERING COLLEGE   RAMANAGARA </option>
+                        <option value="GH">GH -  GOVERNMENT ENGINEERING COLLEGE  HASSAN </option>
+                        <option value="GI">GI -  KLS GOGTE INSTITUTE OF TECHNOLOGY   BELGAUM </option>
+                        <option value="GJ">GJ -  GIRIJABAI SAIL INSTITUTE OF TECHNOLOGY   KARWAR </option>
+                        <option value="GK">GK -  GOVERNMENT ENGINEERING COLLEGE   KRISHNARAJAPETE </option>
+                        <option value="GL">GL -  GOVERNMENT ENGINEERING COLLEGE  KUSHALNAGAR </option>
+                        <option value="GM">GM -  G.M. INSTITUTE OF TECHNOLOGY   DAVANGERE </option>
+                        <option value="GN">GN -  GURU NANAK DEV ENGINEERING COLLEGE   BIDAR </option>
+                        <option value="GO">GO -  GOVERNMENT ENGINEERING COLLEGE   HAVERI </option>
+                        <option value="GP">GP -  GOVT. ENGINEERING COLLEGE   KARWAR </option>
+                        <option value="GQ">GQ -  GOPALAN SCHOOL OF ARCHITECTURE AND PLANNING  BANGALORE </option>
+                        <option value="GR">GR -  GOVT. TOOL ROOM & TRAINING CENTRE   MYSORE </option>
+                        <option value="GS">GS -  GSS INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="GT">GT -  GOVT. TOOL ROOM & TRAINING CENTRE   BANGALORE </option>
+                        <option value="GU">GU -  GOVERNMENT ENGINEERING COLLEGE   RAICHUR </option>
+                        <option value="GV">GV -  DR. T. THIMMAIAH INSTITUTE OF TECHNOLOGY   K.G.F. </option>
+                        <option value="GW">GW -  G S S S INSTITUTE OF ENGINEERING AND TECHNOLOGY FOR WOMEN  MYSORE </option>
+                        <option value="GX">GX -  G S S S INSTITUTE OF ENGINEERING AND TECHNOLOGY FOR WOMEN  MYSORE </option>
+                        <option value="GY">GY -  GLOBAL ACADEMY OF TECHNOLOGY   BANGALORE </option>
+                        <option value="GZ">GZ -  KLS GOGTE INSTITUTE OF TECHNOLOGY   BELGAUM </option>
+                        <option value="HA">HA -  SHAIKH COLLEGE OF ENGINEERING & TECHNOLOGY   BELGAUM </option>
+                        <option value="HG">HG - GOVERNMENT ENGINEERING COLLEGE MOSALE HOSAHALLI</option>
+                        <option value="HK">HK -  H.K.B.K. COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="HM">HM -  H.M.S. INSTITUTE OF TECHNOLOGY   TUMKUR </option>
+                        <option value="HN">HN -  S.J.P.N. TRUST'S HIRASUGAR INSTITUTE OF TECHNOLOGY   NIDASOSHI </option>
+                        <option value="HS">HS -  SHA-SHIB COLLEGE OF ENGINEERING  CHICKABALLAPUR. </option>
+                        <option value="IA">IA -  ACHARYA INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="IB">IB -  R.N.S. INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="IC">IC -  IMPACT COLLEGE OF ENGINEERING AND APPLIED SCIENCES   BANGALORE </option>
+                        <option value="ID">ID -  INTERNATIONAL INSTITUTE OF INDUSTRIAL SAFETY MANAGEMENT  BANGALORE </option>
+                        <option value="IE">IE -  BRINDAVAN SCHOOL OF ARCHITECTURE BENGALURU  BENGALURU </option>
+                        <option value="IG">IG -  ANGADI SCHOOL OF ARCHITECTURE   BELAGAVI </option>
+                        <option value="IH">IH -  BANGALORE INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="II">II -  ISLAMIAH INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="IM">IM -  DEPARTMENT OF PG STUDIES   VTU  BANGALORE </option>
+                        <option value="IN">IN - INDIAN INSTITUTE OF SCIENCE BANGALORE</option>
+                        <option value="IR">IR -  RASTA CENTRE FOR ROAD TECHNOLOGY   BANGALORE </option>
+                        <option value="IS">IS -  IMPACT SCHOOL OF ARCHITECTURE   BANGALORE </option>
+                        <option value="IT">IT -  HMS SCHOOL OF ARCHITECTURE   TUMKUR </option>
+                        <option value="IV">IV -  SIR. M. V. SCHOOL OF ARCHITECTURE  HUNASAMARANAHALL </option>
+                        <option value="JA">JA -  SJB SCHOOL OF ARCHITECTURE AND PLANNING   BANGALORE </option>
+                        <option value="JB">JB -  S.J.B. INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="JC">JC -  SRI JAYACHAMARAJENDRA COLLEGE OF ENGINEERING   MYSORE </option>
+                        <option value="JD">JD -  JAIN INSTITUTE OF TECHNOLOGY   DAVANAGERE </option>
+                        <option value="JE">JE -  SRI JAYACHAMARAJENDRA COLLEGE OF ENGINEERING (EVENING)   MYSORE </option>
+                        <option value="JG">JG -  JAGM INSTITUTE OF TECHNOLOGY   JAMKHANDI </option>
+                        <option value="JH">JH - JAIN COLLEGE OF ENGINEERING AND TECHNOLOGY. HUBBALLI</option>
+                        <option value="JI">JI -  JAIN COLLEGE OF ENGINEERING   BELAGAVI </option>
+                        <option value="JJ">JJ -  JAIN COLLEGE OF ENGINEERING  BGV </option>
+                        <option value="JK">JK - A.J. INSTITUTE OF ENGINEERING AND TECHNOLOGY  MANGALURU </option>
+                        <option value="JM">JM -  JSS ACADEMY OF TECHNICAL EDUCATION   MAURITIUS </option>
+                        <option value="JN">JN -  JAWAHARLAL NEHRU NATIONAL COLLEGE OF ENGINEERING   SHIMOGA </option>
+                        <option value="JR">JR - JAIN COLLEGE OF ENGINEERING AND RESEARCH. BELAGAVI</option>
+                        <option value="JS">JS -  J.S.S. ACADEMY OF TECHNICAL EDUCATION   BANGALORE </option>
+                        <option value="JT">JT -  JYOTHY INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="JV">JV -  JNANA VIKAS INSTITUTE OF TECHNOLOGY   BIDADI </option>
+                        <option value="JX">JX -  S.J.B. INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="JY">JY -  SRI JAYACHAMARAJENDRA COLLEGE OF ENGINEERING   MYSORE </option>
+                        <option value="JZ">JZ -  JAWAHARLAL NEHRU NATIONAL COLLEGE OF ENGINEERING   SHIMOGA </option>
+                        <option value="KA">KA -  SMT. KAMALA AND SHRI VENKAPPA M AGADI COLLEGE OF ENGG. AND TECH.   LAXMESHWAR </option>
+                        <option value="KB">KB -  K.B.N. COLLEGE OF ENGINEERING   GULBARGA </option>
+                        <option value="KC">KC -  K.C.T. ENGINEERING COLLEGE   GULBARGA </option>
+                        <option value="KD">KD -  K L E  COLLEGE OF ENGINEERING AND TECHNOLOGY  CHIKODI </option>
+                        <option value="KE">KE -  K L E INSTITUTE OF TECHNOLOGY   HUBLI </option>
+                        <option value="KF">KF -  K S SCHOOL OF ARCHITECTURE   BENGALURU </option>
+                        <option value="KG">KG -  K.S. SCHOOL OF ENGINEERING AND MANAGEMENT   BANGALORE </option>
+                        <option value="KH">KH -  SRI KRISHNA SCHOOL OF ENGINEERING & MANAGEMENT   BANGALORE </option>
+                        <option value="KI">KI -  KALPATARU INSTITUTE OF TECHNOLOGY   TIPTUR </option>
+                        <option value="KL">KL -  KLE DR.M.S. SHESHGIRI COLLEGE OF ENGINEERING & TECHNOLOGY   BELGAUM </option>
+                        <option value="KM">KM -  KARAVALI INSTITUTE OF TECHNOLOGY   MANGALORE </option>
+                        <option value="KN">KN -  KNS INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="KS">KS -  K.S. INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="KT">KT -  SRI KRISHNA INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="KV">KV -  KURUNJI VENKATRAMANA GOWDA COLLEGE OF ENGINEERING   SULLIA(D.K.) </option>
+                        <option value="LA">LA -  LINGARAJ APPA ENGINEERING COLLEGE   BIDAR </option>
+                        <option value="LB">LB -  BILURU GURU BASAVA MAHASWAMIJI INSTITUTE OF TECHNOLOGY   MUDHOL </option>
+                        <option value="LG">LG - GOVERNMENT ENGINEERING COLLEGE. TALAKAL</option>
+                        <option value="LV">LV -  ALVA'S INSTITUTE OF MOODABIDRI  MOODABIDRI </option>
+                        <option value="MA">MA -  MYSORE SCHOOL OF ARCHITECTURE  MYSORE </option>
+                        <option value="MB">MB -  MALIK SANDAL INSTITUTE OF ART & ARCHITECTURE   BIJAPUR </option>
+                        <option value="MC">MC -  MALNAD COLLEGE OF ENGINEERING   HASSAN </option>
+                        <option value="MD">MD -  SCHOOL OF MANAGEMENT FOR INFRASTRUCTURE AND DEVELOPMENT STRATAGIES(MINDS)  BANGALORE </option>
+                        <option value="ME">ME -  M.S. ENGINEERING COLLEGE   BANGALORE </option>
+                        <option value="MG">MG -  G MADEGOWDA INSTITUTE OF TECHNOLOGY   BHARATHINAGARA </option>
+                        <option value="MH">MH -  MAHARAJA INSTITUTE OF TECHNOLOGY   MYSORE </option>
+                        <option value="MJ">MJ -  M.V. JAYARAMAN COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="MK">MK -  MOODLAKATTE INSTITUTE OF TECHNOLOGY   MOODLAKATTE </option>
+                        <option value="MM">MM -  MARATHA MANDAL'S ENGINEERING COLLEGE   BELGAUM </option>
+                        <option value="MN">MN - MAHARAJA INSTITUTE OF TECHNOLOGY THANDAVAPURA, MYSURU</option>
+                        <option value="MO">MO -  MYSORE COLLEGE OF ENGINEERING AND MANAGEMENT.   MYSURU </option>
+                        <option value="MQ">MQ - SIR. M.V. SCHOOL OF ARCHTECTURE, BENGALURU</option>
+                        <option value="MR">MR -  MANGALORE MARINE COLLEGE AND TECHNOLOGY   MANGALORE </option>
+                        <option value="MS">MS -  M.S. RAMAIAH INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="MT">MT -  MANGALORE INSTITUTE OF TECHNOLOGY AND ENGINEERING   MOODABIDRI </option>
+                        <option value="MU">MU -  MYSURU ROYAL INSTITUTE OF TECHNOLOGY   MANDYA </option>
+                        <option value="MV">MV -  SIR M VISVESVARAYA INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="MW">MW -  SHRI MADHWA VADIRAJA INSTITUTE OF TECHNOLOGY AND MANAGEMENT   UDUPI </option>
+                        <option value="MX">MX -  MAHARAJA INSTITUTE OF TECHNOLOGY   MYSORE </option>
+                        <option value="MY">MY -  M.S. RAMAIAH INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="MZ">MZ -  SIR M VISVESVARAYA INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="NA">NA -  NAVODAYA INSTITUTE OF TECHNOLOGY   RAICHUR </option>
+                        <option value="NC">NC -  NAGARJUNA COLLEGE OF ENGINEERING & TECHNOLOGY   MUDUGURKI </option>
+                        <option value="NE">NE -  THE NATIONAL INSTITUTE OF ENGINEERING(EVENING)   MYSORE </option>
+                        <option value="NG">NG - GOVERNMENT ENGINEERING COLLEGE. GANGAVATI</option>
+                        <option value="NH">NH -  NEW HORIZON COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="NI">NI -  THE NATIONAL INSTITUTE OF ENGINEERING   MYSORE </option>
+                        <option value="NJ">NJ -  NADGIR INSTITUTE OF ENGINEERING AND TECHNOLOGY   BANGALORE </option>
+                        <option value="NM">NM -  NITTE MAHALINGA ADYANTHAYA MEMORIAL INSTITUTE OF TECHNOLOGY   NITTE </option>
+                        <option value="NN">NN -  NIE INSTITUTE OF TECHNOLOGY   MYSORE </option>
+                        <option value="NS">NS - NITTE SCHOOL OF ARCHITECTURE PLANNING & DESIGN BENGALURU</option>
+                        <option value="NT">NT -  NITTE MEENAKSHI INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="NX">NX -  NITTE MEENAKSHI INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="NY">NY -  NITTE MAHALINGA ADYANTHAYA MEMORIAL INSTITUTE OF TECHNOLOGY   NITTE </option>
+                        <option value="NZ">NZ -  NEW HORIZON COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="OQ">OQ - OXFORD SCHOOL OF ARCHTECTURE, BENGALURU</option>
+                        <option value="OX">OX -  OXFORD COLLEGE OF ENGINEERING   J.P. NAGAR </option>
+                        <option value="OY">OY -  OXFORD COLLEGE OF ENGINEERING   J.P. NAGAR </option>
+                        <option value="OZ">OZ -  OXFORD COLLEGE OF ENGINEERING   J.P. NAGAR </option>
+                        <option value="PA">PA -  P.A. COLLEGE OF ENGINEERING   KAIRANGALA </option>
+                        <option value="PB">PB -  P.E.S. INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="PC">PC -  BGS SCHOOL OF ARCHITECTURE AND PLANNING   BENGALURU </option>
+                        <option value="PD">PD -  POOJYA DODDAPPA APPA COLLEGE OF ENGINEERING   GULBARGA </option>
+                        <option value="PE">PE -  PEOPLES EDUCATION SOCIETY - SCHOOL OF ENGINEERING  BANGALORE </option>
+                        <option value="PG">PG -  PROUDADEVARAYA INSTITUTE OF TECHNOLOGY   HOSPET </option>
+                        <option value="PH">PH -  PEOPLES EDUCATION SOCIETY - SCHOOL OF ENGINEERING  BANGALORE </option>
+                        <option value="PI">PI -  P.E.S. INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="PL">PL -  SHRI PILLAPPA COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="PM">PM -  PES INSTITUTE OF TECHNOLOGY AND MANAGEMENT   SHIMOGA </option>
+                        <option value="PN">PN -  P N S  INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="PR">PR -  PRASAANNA COLLEGE OF ENGINEERING AND TECHNOLOGY   BELTANGADI </option>
+                        <option value="PS">PS -  P.E.S. COLLEGE OF ENGINEERING   MANDYA </option>
+                        <option value="PT">PT -  P.E.S. INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="PZ">PZ -  PES INSTITUTE OF TECHNOLOGY AND MANAGEMENT   SHIMOGA </option>
+                        <option value="QB">QB -  KURUNJI VENKATRAMANA GOWDA COLLEGE OF ENGINEERING   SULLIA(D.K.) </option>
+                        <option value="RA">RA -  RAJEEV INSTITUTE OF TECHNOLOGY   HASSAN </option>
+                        <option value="RB">RB -  BHEEMANNA KHANDRE INSTITUTE OF TECHNOLOGY   BHALKI </option>
+                        <option value="RC">RC -  SRI REVANA SIDDESHWARA INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="RD">RD - RASHTREEYA VIDYALAYA COLLEGE OF ENGINEERING   BANGALORE</option>
+                        <option value="RE">RE -  REVA INSTITUTE OF TECHNOLOGY AND MANAGEMENT   BANGALORE </option>
+                        <option value="RF">RF - R V INSTITUTE OF TECHNOLOGY & MANAGEMENT. BENGALURU</option>
+                        <option value="RG">RG -  RAJIV GANDHI INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="RH">RH -  RURAL ENGINEERING COLLEGE   HULKOTI </option>
+                        <option value="RI">RI -  R R INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="RL">RL -  R.L. JALAPPA  INSTITUTE OF TECHNOLOGY   DODDABALLAPUR </option>
+                        <option value="RN">RN -  R.N.S. INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="RQ">RQ - RNS SCHOOL OF ARCHTECTURE, BENGALURU</option>
+                        <option value="RR">RR -  RAJARAJESWARI COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="RS">RS -  R. R. SCHOOL OF ARCHITECTURE  BANGALORE </option>
+                        <option value="RV">RV - RASHTREEYA VIDYALAYA COLLEGE OF ENGINEERING   BANGALORE</option>
+                        <option value="RW">RW -  R. V. COLLEGE OF ARCHITECTURE   BANGALORE </option>
+                        <option value="RX">RX -  R.N.S. INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="RY">RY -  REVA INSTITUTE OF TECHNOLOGY AND MANAGEMENT   BANGALORE </option>
+                        <option value="RZ">RZ -  RASHTREEYA VIDYALAYA COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="SA">SA -  SECAB INSTITUTE OF ENGINEERING & TECHNOLOGY   BIJAPUR </option>
+                        <option value="SB">SB - SRI SAIRAM COLLEGE OF ENGINEERING, BANGALORE</option>
+                        <option value="SC">SC -  S.C.T. INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="SD">SD - S.D.M. COLLEGE OF ENGINEERING & TECHNOLOGY. DHARWAD</option>
+                        <option value="SE">SE -  GOVT. S.K.S.J. TECHNOLOGICAL(EVENING) INSTITUTE   BANGALORE </option>
+                        <option value="SF">SF -  SAHYADRI COLLEGE OF ENGINEERING AND MANAGEMENT   MANGALORE </option>
+                        <option value="SG">SG -  SAPTHAGIRI COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="SH">SH -  SHREEDEVI INSTITUTE OF TECHNOLOGY MANGALORE </option>
+                        <option value="SI">SI -  SIDDAGANGA INSTITUTE OF TECHNOLOGY   TUMKUR </option>
+                        <option value="SJ">SJ -  S.J.C. INSTITUTE OF TECHNOLOGY   CHICKBALLAPUR </option>
+                        <option value="SK">SK -  GOVT. S.K.S.J. TECHNOLOGICAL INSTITUTE   BANGALORE </option>
+                        <option value="SL">SL -  S.L.N. COLLEGE OF ENGINEERING   RAICHUR </option>
+                        <option value="SM">SM -  SRI JAGADGURU MALLIKARJUNA MURUGHARAJENDRA INST. OF TECH.   CHITRADURGA </option>
+                        <option value="SN">SN -  SRINIVAS INSTITUTE OF TECHNOLOGY   MANGALORE </option>
+                        <option value="SO">SO -  ST. JOSEPH ENGINEERING COLLEGE   MANGALORE </option>
+                        <option value="SP">SP -  S E A COLLEGE OF ENGINEERING AND TECHNOLOGY   BANGALORE </option>
+                        <option value="SR">SR -  SRI TARALABALU JAGADGURU INSTITUTE OF TECHNOLOGY   RANEBENNUR </option>
+                        <option value="SS">SS -  SRI SIDDHARTHA INSTITUTE OF TECHNOLOGY   TUMKUR </option>
+                        <option value="ST">ST -  SAMBHRAM INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="SU">SU -  SDM INSTITUTE OF TECHNOLOGY   UJIRE(DK) </option>
+                        <option value="SV">SV -  SHRIDEVI INSTITUTE OF ENGINEERING & TECHNOLOGY   TUMKUR </option>
+                        <option value="SW">SW -  SRI BASAVESHWAR INSTITUTE OF TECHNOLOGY   TIPTUR </option>
+                        <option value="SX">SX -  SAHYADRI COLLEGE OF ENGINEERING AND MANAGEMENT   MANGALORE </option>
+                        <option value="SY">SY -  SIDDAGANGA INSTITUTE OF TECHNOLOGY   TUMKUR </option>
+                        <option value="SZ">SZ -  SAMPOORNA INSTITUTE OF TECHNOLOGY AND RESEARCH   CHANNAPATTANA </option>
+                        <option value="TA">TA -  BEST SCHOOL OF ARCHITECTURE   TUMKUR </option>
+                        <option value="TB">TB -  B.N.M. INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="TC">TC -  SAMBHRAM INSTITUTE OF TECHNOLOGY  BANGALORE </option>
+                        <option value="TG">TG -  TONTADARYA COLLEGE OF ENGINEERING   GADAG </option>
+                        <option value="TH">TH -  SHREEDEVI INSTITUTE OF TECHNOLOGY  MANGALORE </option>
+                        <option value="TJ">TJ -  T. JOHN INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="TP">TP -  AIR FORCE TEST PILOTS SCHOOL   BANGALORE </option>
+                        <option value="TR">TR -  BALLARI INSTITUTE OF TECHNOLOGY & MANAGEMENT   BELLARY </option>
+                        <option value="TS">TS -  SHETTY INSTITUTE OF TECHNOLOGY   GULBARGA </option>
+                        <option value="TV">TV -  VIDYA VARDHAKA COLLEGE OF ENGINEERING   MYSORE </option>
+                        <option value="UB">UB -  UBDT COLLEGE OF ENGINEERING   DAVANGERE </option>
+                        <option value="UD">UD -  UBDT COLLEGE OF ENGINEERING   DAVANGERE </option>
+                        <option value="VA">VA -  SAI VIDYA INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="VB">VB -  SRI VINAYAKA INSTITUTE OF TECHNOLOGY   KGF </option>
+                        <option value="VC">VC -  RAO BAHADUR Y.MAHABALESWARAPPA ENGINEERING COLLEGE   BELLARY. </option>
+                        <option value="VD">VD - KLS VISHWANATHRAO DESHPANDE INSTITUTE OF TECHNOLOGY, HALIYAL</option>
+                        <option value="VE">VE -  SRI VENKATESHWARA COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="VF">VF -  DEPARTMENT OF PG STUDIES   VTU MYSORE </option>
+                        <option value="VG">VG -  SRI VIDYA VINAYAKA INSTITUTE OF TECHNOLOGY    BANGALORE </option>
+                        <option value="VH">VH -  DEPARTMENT OF PG STUDIES   VTU GULBARGA </option>
+                        <option value="VI">VI -  VEMANA INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="VJ">VJ -  VIJAYA VITTALA INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="VK">VK -  VIVEKANANDA INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="VL">VL - BASAVA ENGINEERING SCHOOL OF TECHNOLOGY, ZALAKI, VIJAYAPURA</option>
+                        <option value="VM">VM -  VIDYA VIKAS INSTITUTE OF ENGINEERING & TECHNOLOGY   MYSORE </option>
+                        <option value="VN">VN -  VEERAPPA NISTY ENGINEERING COLLEGE   SHORAPUR </option>
+                        <option value="VP">VP -  VIVEKANANDA COLLEGE OF ENGINEERING & TECHNOLOGY   PUTTUR(D.K.) </option>
+                        <option value="VS">VS -  V S M  S INSTITUTE OF TECHNOLOGY </option>
+                        <option value="VT">VT -  DEPARTMENT OF PG STUDIES   VTU BELGAUM </option>
+                        <option value="VV">VV -  VIDYA VARDHAKA COLLEGE OF ENGINEERING   MYSORE </option>
+                        <option value="VW">VW - DEPARTMENT OF PG STUDIES,VTU. BANGALORE</option>
+                        <option value="VX">VX -  DEPARTMENT OF PG STUDIES   VTU BELGAUM </option>
+                        <option value="VY">VY -  DEPARTMENT OF PG STUDIES   VTU GULBARGA </option>
+                        <option value="VZ">VZ -  DEPARTMENT OF PG STUDIES   VTU MYSORE </option>
+                        <option value="WA">WA -  B.M.S. COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="WB">WB -  HONEYWELL TECHNOLOGY SOLUTIONS LAB   BANGALORE </option>
+                        <option value="WC">WC -  INTERNATIONAL INSTITUTE OF PRODUCTIVITY SCIENCE AND MANAGEMENT   BANGALORE </option>
+                        <option value="WD">WD -  KARNATAKA STATE REMOTE SENSING APPLICATIONS CENTRE  BANGALORE </option>
+                        <option value="WE">WE -  REVA INSTITUTE OF TECHNOLOGY AND MANAGEMENT   BANGALORE </option>
+                        <option value="WF">WF -  RASHTREEYA VIDYALAYA COLLEGE OF ENGINEERING   BANGALORE </option>
+                        <option value="WG">WG -  S.J.C. INSTITUTE OF TECHNOLOGY   CHICKBALLAPUR </option>
+                        <option value="WH">WH -  SRI SIDDHARTHA INSTITUTE OF TECHNOLOGY   TUMKUR </option>
+                        <option value="WI">WI - UTL, BANGALORE</option>
+                        <option value="WJ">WJ -  SIDDAGANGA INSTITUTE OF TECHNOLOGY   TUMKUR </option>
+                        <option value="WK">WK -  GOVT. S.K.S.J. TECHNOLOGICAL INSTITUTE   BANGALORE </option>
+                        <option value="WM">WM - GSSS SCHOOL OF ARCHITECTURE FOR WOMEN, MYSURU</option>
+                        <option value="WS">WS - EAST WEST SCHOOL OF ARCHITECTURE, BENGALURU</option>
+                        <option value="XA">XA -  BASAVESHWAR ENGINEERING COLLEGE   BAGALKOT </option>
+                        <option value="XB">XB -  B.V. BHOOMARADDI COLLEGE OF ENGINEERING AND TECHNOLOGY   HUBLI </option>
+                        <option value="XC">XC -  KLS GOGTE INSTITUTE OF TECHNOLOGY   BELGAUM </option>
+                        <option value="XD">XD -  S.D.M. COLLEGE OF ENGINEERING AND TECHNOLOGY   DHARWAD </option>
+                        <option value="XE">XE -  DEPARTMENT OF PG STUDIES   VTU BELGAUM </option>
+                        <option value="XF">XF -  DEPARTMENT OF PG STUDIES   VTU BELGAUM </option>
+                        <option value="XG">XG -  GOVERNMENT ENGINEERING COLLEGE   HAVERI </option>
+                        <option value="YA">YA -  POOJYA DODDAPPA APPA COLLEGE OF ENGINEERING   GULBARGA </option>
+                        <option value="YD">YD -  YELLAMMA DASAPPA INSTITUTE OF TECHNOLOGY   BANGALORE </option>
+                        <option value="YG">YG -  NDRK INSTITUTE OF TECHNOLOGY   HASSAN </option>
+                        <option value="ZA">ZA -  BAPUJI INSTITUTE OF ENGINEERING AND TECHNOLOGY   DAVANGERE </option>
+                        <option value="ZB">ZB -  MALNAD COLLEGE OF ENGINEERING   HASSAN </option>
+                        <option value="ZC">ZC -  THE NATIONAL INSTITUTE OF ENGINEERING   MYSORE </option>
+                        <option value="ZD">ZD -  NITTE MAHALINGA ADYANTHAYA MEMORIAL INSTITUTE OF TECHNOLOGY   NITTE </option>
+                        <option value="ZE">ZE -  P.E.S. COLLEGE OF ENGINEERING   MANDYA </option>
+                        <option value="ZF">ZF -  SRI JAYACHAMARAJENDRA COLLEGE OF ENGINEERING   MYSORE </option>
+                        <option value="ZH">ZH -  GOVERNMENT ENGINEERING COLLEGE  HASSAN </option>
+                        <option value="ZI">ZI -  SAHYADRI COLLEGE OF ENGINEERING AND MANAGEMENT   MANGALORE </option>
+                        <option value="ZW">ZW -  AIRFORCE TECHNICAL COLLEGE  JALAHALLI WEST </option>
+                        <option value="ZX">ZX -  THE NATIONAL INSTITUTE OF ENGINEERING   MYSORE </option>
+                    </select>
+                    <label for="college" class="label">College <span class="mandatory">*</span></label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 input-container">
+                    <select class="input" id="programme" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="UG">UG</option>
+                        <option value="PG">PG</option>
+                    </select>
+                    <label for="programme" class="label">Programme <span class="mandatory">*</span></label>
+                </div>
+                <div class="col-md-6 input-container">
+                    <select class="input" id="course" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="BR">Bachelor of Architecure</option>
+                        <option value="BE">Bachelor of Engineering</option>
+                        <option value="BP">Bachelor of Planning</option>
+                        <option value="BT">Bachelor of Technology</option>
+                        <option value="MR">Master of Architecture</option>
+                        <option value="MB">Master of Business Administration</option>
+                        <option value="MC">Master of Computer Application</option>
+                        <option value="MT">Master of Technology</option>
+                        <option value="MP">Master of Technology ( Part Time )</option>
+                    </select>
+                    <label for="course" class="label">Course <span class="mandatory">*</span></label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 input-container">
+                    <select class="input" id="branch" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="" disabled selected>Select</option>
+                        <option value="AD">AD - ARTIFICIAL INTELLIGENCE AND DATA SCIENCE</option>
+                        <option value="AE">AE - AERONAUTICAL ENGINEERING</option>
+                        <option value="AI">AI - ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING</option>
+                        <option value="ALC">ALC - CHEMISTRY CYCLE</option>
+                        <option value="ALP">ALP - PHYCICS CYCLE</option>
+                        <option value="AR">AR - AUTOMATION AND ROBOTICS ENGINEERING</option>
+                        <option value="AS">AS - AEROSPACE ENGINEERING</option>
+                        <option value="AT">AT - ARCHITECTURE</option>
+                        <option value="AU">AU - AUTOMOBILE ENGINEERING</option>
+                        <option value="BM">BM - BIO-MEDICAL ENGINEERING</option>
+                        <option value="BP">BP - BUILDING PLANING</option>
+                        <option value="BT">BT - BIOTECHNOLOGY</option>
+                        <option value="CA">CA - COMPUTER SCIENCE AND ENGINEERING ( ARTIFICIAL INTELLIGENCE )</option>
+                        <option value="CB">CB - COMPUTER SCIENCE AND BUISNESS SYSTEMS</option>
+                        <option value="CC">CC - CERAMICS & CEMENT TECHNOLOGY</option>
+                        <option value="CD">CD - COMPUTER SCIENCE AND ENGINEERING ( DATA SCIENCE )</option>
+                        <option value="CE">CE - COMPUTER ENGINEERING</option>
+                        <option value="CH">CH - CHEMICAL ENGINEERING</option>
+                        <option value="CI">CI - COMPUTER SCIENCE AND ENGINEERING ( ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING )</option>
+                        <option value="CM">CM - COMPUTER AND COMMUNICATION ENGINEERING</option>
+                        <option value="CS">CS - COMPUTER SCIENCE & ENGINEERING</option>
+                        <option value="CT">CT - CONSTRUCTION TECHNOLOGY AND MANAGEMENT</option>
+                        <option value="CV">CV - CIVIL ENGINEERING</option>
+                        <option value="DS">DS - DATA SCIENCE</option>
+                        <option value="EC">EC - ELECTRONICS & COMMUNICATION ENGINEERING</option>
+                        <option value="EE">EE - ELECTRICAL & ELECTRONICS ENGINEERING</option>
+                        <option value="EI">EI - ELECTRONICS & INSTRUMENTATION ENGINEERING</option>
+                        <option value="ET">ET - ELECTRONICS & TELECOMMUNICATION</option>
+                        <option value="EV">EV - ENVIRONMENTAL ENGINEERING</option>
+                        <option value="FT">FT - FASHION TECHNOLOGY</option>
+                        <option value="IC">IC - COMPUTER SCIENCE AND ENGINEERING ( IOT AND CYBER SECURITY INCLUDING BLOCK CHAIN TECHNOLOGY )</option>
+                        <option value="IM">IM - INDUSTRIAL ENGINEERING & MANAGEMENT</option>
+                        <option value="IP">IP - INDUSTRIAL & PRODUCTION ENGINEERING</option>
+                        <option value="IS">IS - INFORMATION SCIENCE & ENGINEERING</option>
+                        <option value="IT">IT - INSTRUMENTATION TECHNOLOGY</option>
+                        <option value="MD">MD - MEDICAL ELECTRONICS ENGINEERING</option>
+                        <option value="ME">ME - MECHANICAL ENGINEERING</option>
+                        <option value="MG">MG - METALLURGY</option>
+                        <option value="MI">MI - MINING ENGINEERING</option>
+                        <option value="ML">ML - MEDICAL ELECTRONICS</option>
+                        <option value="MM">MM - MECHANICAL AND SMART MANUFACTURING</option>
+                        <option value="MR">MR - MARINE ENGINEERING</option>
+                        <option value="MS">MS - MANUFACTURING SCIENCE & ENGINEERING</option>
+                        <option value="MT">MT - MECHATRONICS ENGINEERING</option>
+                        <option value="NT">NT - NANOTECHNOLOGY</option>
+                        <option value="PC">PC - PETROCHEM ENGINEERING</option>
+                        <option value="PM">PM - POLYMER SCIENCE & TECHNOLOGY</option>
+                        <option value="PR">PR - PRECISION MANUFACTURING</option>
+                        <option value="PT">PT - PRINTING TECHNOLOGY</option>
+                        <option value="RA">RA - ROBOTICS AND AUTOMATION</option>
+                        <option value="ST">ST - SILK TECHNOLOGY</option>
+                        <option value="TE">TE - TELECOMMUNICATION ENGINEERING</option>
+                        <option value="TL">TL - TOOL ENGINEERING</option>
+                        <option value="TR">TR - TRANSPORTATION ENGINEERING</option>
+                        <option value="TX">TX - TEXTILE TECHNOLOGY</option>
+                        <option value="ADA">ADA - DIGITAL ARCHITECTURE</option>
+                        <option value="AES">AES - AEROSPACE STRUCTURES</option>
+                        <option value="AGS">AGS - AIRCRAFT AND GUIDANCE SYSTEM</option>
+                        <option value="AHD">AHD - HABITAT DESIGN</option>
+                        <option value="AMT">AMT - AEROSPACE MAINTENANCE TECHNOLOGY AND MANAGEMENT</option>
+                        <option value="ANS">ANS - AIR NAVIGATION SYSTEM</option>
+                        <option value="AUD">AUD - URBAN DESIGN</option>
+                        <option value="BBC">BBC - BIOTECHNOLOGY & BIOCHEMICAL ENGINEERING</option>
+                        <option value="BBI">BBI - BIOINFORMATICS</option>
+                        <option value="BBT">BBT - BIOTECHNOLOGY</option>
+                        <option value="BCE">BCE - BIOCHEMICAL ENGINEERING</option>
+                        <option value="CBM">CBM - BUILDING CONSTRUCTION & MANAGEMENT</option>
+                        <option value="CCD">CCD - COMPUTER AIDED DESIGN OF STRUCTURES</option>
+                        <option value="CCM">CCM - CONSTRUCTION ENGINEERING & MANAGEMENT</option>
+                        <option value="CCS">CCS - COMPUTER AIDED DESIGN OF STRUCTURES</option>
+                        <option value="CCT">CCT - CONSTRUCTION TECHNOLOGY</option>
+                        <option value="CEE">CEE - ENVIRONMENTAL ENGINEERING</option>
+                        <option value="CEM">CEM - INFRASTRUCTURE ENGINEERING AND MANAGEMENT</option>
+                        <option value="CEZ">CEZ - ENVIRONMENTAL ENGINEERING (PG)</option>
+                        <option value="CGE">CGE - GROUND ENGINEERING</option>
+                        <option value="CGI">CGI - GEOINFORMATICS</option>
+                        <option value="CGT">CGT - GEO-TECHNICAL ENGINEERING</option>
+                        <option value="CHN">CHN - HYDRAULICS & WATER RESOURCE ENGINEERING</option>
+                        <option value="CHT">CHT - HIGHWAY TECHNOLOGY</option>
+                        <option value="CHW">CHW - HYDRAULICS AND WATER RESOURCE ENGINEERING</option>
+                        <option value="CHY">CHY - HYDRAULICS</option>
+                        <option value="CIE">CIE - INFRASTRUCTURE ENGINEERING AND MANAGEMENT</option>
+                        <option value="CIM">CIM - INFRASTRUCTURE CONSTRUCTION & MANAGEMENT</option>
+                        <option value="CIS">CIS - INDUSTRIAL STRUCTURES</option>
+                        <option value="CMS">CMS - MARINE STRUCTURES</option>
+                        <option value="CPE">CPE - ENVIRONMENTAL ENGINEERING (PG)</option>
+                        <option value="CPM">CPM - CONSTRUCTION PROJECT MANAGEMENT</option>
+                        <option value="CPS">CPS - STRUCTURAL ENGINEERING</option>
+                        <option value="CPZ">CPZ - STRUCTURAL ENGINEERING</option>
+                        <option value="CSE">CSE - STRUCTURAL ENGINEERING</option>
+                        <option value="CSM">CSM - COMMUNICATION SYSTEM AND MANAGEMENT</option>
+                        <option value="CTE">CTE - TRANSPORTATION ENGINEERING</option>
+                        <option value="CTM">CTM - TRANSPORTATION ENGINEERING AND MANAGEMENT</option>
+                        <option value="CTZ">CTZ - TRANSPORTATION ENGINEERING</option>
+                        <option value="CWH">CWH - WASTE WATER MANAGEMENT HEALTH & SAFETY ENGG</option>
+                        <option value="CWM">CWM - WATER & LAND MANAGEMENT</option>
+                        <option value="CWR">CWR - WATER RESOURCES MANAGEMENT</option>
+                        <option value="CWZ">CWZ - WATER AND LAND MANAGEMENT</option>
+                        <option value="DAL">DAL - AERONAUTICAL ENGINEERING(ELECTRONICS)</option>
+                        <option value="DAM">DAM - AERONAUTICAL ENGINEERING(MECHANICAL)</option>
+                        <option value="DHM">DHM - HEALTHCARE MANAGEMENT</option>
+                        <option value="DIM">DIM - INFRASTRUCTURE MANAGEMENT</option>
+                        <option value="DIS">DIS - P.G.DIPLOMA IN INDUSTRIAL SAFETY MANAGEMENT</option>
+                        <option value="ECD">ECD - COMPUTER APPLICATIONS IN INDUSTRIAL DRIVES</option>
+                        <option value="EEM">EEM - ENERGY SYSTEMS & MANAGEMENT</option>
+                        <option value="EES">EES - ELECTRICAL ENERGY SYSTEMS</option>
+                        <option value="EIT">EIT - ILLUMINATION TECHNOLOGY</option>
+                        <option value="EMS">EMS - MICRO ELECTRONICS & CONTROL SYSTEMS</option>
+                        <option value="EPE">EPE - POWER ELECTRONICS</option>
+                        <option value="EPS">EPS - POWER SYSTEMS ENGINEERING</option>
+                        <option value="ERE">ERE - RENEWABLE ENERGY</option>
+                        <option value="ESE">ESE - ENERGY SYSTEM ENGINEERING</option>
+                        <option value="EST">EST - ENERGY SCIENCE AND TECHNOLOGY</option>
+                        <option value="EVH">EVH - HEALTH SCIENCES & WATER ENGINEERING</option>
+                        <option value="FBT">FBT - FOOD BIOTECHNOLOGY</option>
+                        <option value="FDT">FDT - FOOD TECHNOLOGY</option>
+                        <option value="FTE">FTE - FLIGHT TEST ENGINEERING</option>
+                        <option value="GIT">GIT - GEOINFORMATICS</option>
+                        <option value="HCD">HCD - CHEMICAL PLANT DESIGN</option>
+                        <option value="HCE">HCE - CHEMICAL ENGINEERING</option>
+                        <option value="HIP">HIP - INDUSTRIAL POLLUTION CONTROL</option>
+                        <option value="IAR">IAR - INDUSTRIAL AUTOMATION & ROBOTICS</option>
+                        <option value="IBT">IBT - INDUSTRIAL BIOTECHNOLOGY</option>
+                        <option value="ICT">ICT - INFORMATION COMMUNICATION TECHNOLOGY</option>
+                        <option value="INT">INT - NANOTECHNOLOGY</option>
+                        <option value="JTT">JTT - TEXTILE TECHNOLOGY</option>
+                        <option value="JTZ">JTZ - TEXTILE TECHNOLOGY</option>
+                        <option value="LAC">LAC - LANDSCAPE ARCHITECTURE</option>
+                        <option value="LBE">LBE - BIO-MEDICAL ENGINEERING</option>
+                        <option value="LBI">LBI - BIO-MEDICAL SIGNAL PROCESSING & INSTRU.</option>
+                        <option value="LCD">LCD - COMPUTER APPLICATIONS IN INDUSTRIAL DRIVES</option>
+                        <option value="LCS">LCS - COMMUNICATION SYSTEMS</option>
+                        <option value="LDC">LDC - DIGITAL COMMUNICATION ENGINEERING</option>
+                        <option value="LDE">LDE - DIGITAL ELECTRONICS</option>
+                        <option value="LDN">LDN - DIGITAL COMMUNICATION & NETWORKING</option>
+                        <option value="LDS">LDS - DIGITAL ELECTRONICS & COMMUNICATION SYSTEMS</option>
+                        <option value="LDT">LDT - VLSI DESIGN AND TESTING</option>
+                        <option value="LDZ">LDZ - DIGITAL ELECTRONICS</option>
+                        <option value="LEC">LEC - DIGITAL ELECTRONICS & COMMUNICATION</option>
+                        <option value="LEL">LEL - ELECTRONICS</option>
+                        <option value="LEZ">LEZ - DIGITAL ELECTRONICS & COMMUNICATION</option>
+                        <option value="LIE">LIE - INDUSTRIAL ELECTRONICS</option>
+                        <option value="LIS">LIS - INFORMATION & COMMUNICATION SYSTEMS</option>
+                        <option value="LMI">LMI - BIO MEDICAL ELECTRONICS & INDUSTRIAL INSTR.</option>
+                        <option value="LMS">LMS - MICROELECTRONICS & CONTROL SYSTEMS</option>
+                        <option value="LNI">LNI - NETWORKING & INTERNET ENGINEERING</option>
+                        <option value="LPE">LPE - POWER ELECTRONICS</option>
+                        <option value="LPZ">LPZ - POWER ELECTRONICS</option>
+                        <option value="LRF">LRF - RADIO FREQUENCY & MICROWAVE ENGINEERING</option>
+                        <option value="LSP">LSP - SIGNAL PROCESSING</option>
+                        <option value="LTS">LTS - INTELLIGENT SYSTEMS</option>
+                        <option value="LVS">LVS - VLSI DESIGN & EMBEDDED SYSTEMS</option>
+                        <option value="LVZ">LVZ - VLSI DESIGN & EMBEDDED SYSTEMS</option>
+                        <option value="MAE">MAE - AERONAUTICAL ENGINEERING</option>
+                        <option value="MAM">MAM - ADVANCED MANUFACTURING ENGINEERING</option>
+                        <option value="MAP">MAP - AEROSPACE PROPULSION TECHNOLOGY</option>
+                        <option value="MAR">MAR - INDUSTRIAL AUTOMATION & ROBOTICS</option>
+                        <option value="MAS">MAS - AEROSPACE ENGINEERING</option>
+                        <option value="MAU">MAU - AUTOMOTIVE ENGINEERING</option>
+                        <option value="MAV">MAV - AVIONIC SYSTEMS</option>
+                        <option value="MAZ">MAZ - AVIONIC SYSTEMS</option>
+                        <option value="MBA">MBA - MASTER OF BUSINESS ADMINISTRATION</option>
+                        <option value="MCA">MCA - MASTER OF COMPUTER APPLICATIONS</option>
+                        <option value="MCE">MCE - COMPUTER AIDED ENGINEERING</option>
+                        <option value="MCM">MCM - COMPUTER INTEGRATED MANUFACTURING</option>
+                        <option value="MCS">MCS - COMPUTATIONAL ANALYSIS IN MECH. SCIENCE</option>
+                        <option value="MCZ">MCZ - COMPUTER INTEGRATED MANUFACTURING</option>
+                        <option value="MDE">MDE - DESIGN ENGINEERING</option>
+                        <option value="MDZ">MDZ - PRODUCT DESIGN & MANUFACTURING</option>
+                        <option value="MEA">MEA - ENGINEERING ANALYSIS AND DESIGN</option>
+                        <option value="MEE">MEE - AUTOMOTIVE ELECTRONICS</option>
+                        <option value="MEM">MEM - MASTER OF ENGINEERING MANAGEMENT</option>
+                        <option value="MES">MES - ENERGY SYSTEMS ENGINEERING</option>
+                        <option value="MEZ">MEZ - PRODUCTION ENGINEERING</option>
+                        <option value="MHP">MHP - HEAT POWER ENGINEERING</option>
+                        <option value="MIA">MIA - INDUSTRIAL AUTOMATION ENGINEERING</option>
+                        <option value="MIE">MIE - INDUSTRIAL ENGINEERING</option>
+                        <option value="MIT">MIT - MASTER OF ILLUMINATION TECHNOLOGY</option>
+                        <option value="MMD">MMD - MACHINE DESIGN</option>
+                        <option value="MME">MME - MATERIALS ENGINEERING</option>
+                        <option value="MMT">MMT - MAINTENANCE ENGINEERING</option>
+                        <option value="MMZ">MMZ - PRODUCTION MANAGEMENT</option>
+                        <option value="MNT">MNT - SPARE</option>
+                        <option value="MPD">MPD - PRODUCT DESIGN & MANUFACTURING</option>
+                        <option value="MPE">MPE - PRODUCTION ENGINEERING</option>
+                        <option value="MPG">MPG - TALLURGY</option>
+                        <option value="MPM">MPM - PRODUCTION MANAGEMENT</option>
+                        <option value="MPT">MPT -  PRODUCTION ENGINEERING & SYSTEMS TECHNOLOGY</option>
+                        <option value="MPY">MPY - PRODUCTION TECHNOLOGY</option>
+                        <option value="MPZ">MPZ - DESIGN ENGINEERING</option>
+                        <option value="MSE">MSE - MANUFACTURING SCIENCE & ENGINEERING</option>
+                        <option value="MST">MST - MATERIAL SCIENCE & TECHNOLOGY</option>
+                        <option value="MTE">MTE - TOOL ENGINEERING</option>
+                        <option value="MTF">MTF - THERMO-FLUID ENGINEERING</option>
+                        <option value="MTH">MTH - THERMAL ENGINEERING</option>
+                        <option value="MTP">MTP - THERMAL POWER ENGINEERING</option>
+                        <option value="MTR">MTR - MECHATRONICS</option>
+                        <option value="MTZ">MTZ - THERMAL POWER ENGINEERING</option>
+                        <option value="OTT">OTT - TEXTILE TECHNOLOGY</option>
+                        <option value="PES">PES - POWER AND ENERGY SYSTEMS</option>
+                        <option value="PST">PST - POLYMER SCIENCE AND TECHNOLOGY</option>
+                        <option value="RME">RME - RADAR MICROWAVE ENGINEERING</option>
+                        <option value="SAM">SAM - ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING</option>
+                        <option value="SCE">SCE - COMPUTER ENGINEERING</option>
+                        <option value="SCN">SCN - COMPUTER NETWORK ENGINEERING</option>
+                        <option value="SCR">SCR - CYBER SECURITY</option>
+                        <option value="SCS">SCS - COMPUTER SCIENCE & ENGINEERING</option>
+                        <option value="SDS">SDS - DATA SCIENCE</option>
+                        <option value="SFC">SFC - CYBER FORENSIC & INFORMATION SECURITY</option>
+                        <option value="SIT">SIT - INFORMATION TECHNOLOGY</option>
+                        <option value="SNZ">SNZ - COMPUTER NETWORK ENGINEERING</option>
+                        <option value="SPS">SPS - COMPUTER SCIENCE AND ENGINEERING (PG)</option>
+                        <option value="SPZ">SPZ - COMPUTER SCIENCE AND ENGINEERING</option>
+                        <option value="SSC">SSC - SYSTEM ANALYSIS AND COMPUTER APPLICATIONS</option>
+                        <option value="SSE">SSE - SOFTWARE ENGINEERING</option>
+                        <option value="SSZ">SSZ - SOFTWARE ENGINEERING</option>
+                        <option value="SWT">SWT - WEB TECHNOLOGIES</option>
+                    </select>
+                    <label for="branch" class="label">Branch <span class="mandatory">*</span></label>
+                </div>
+                <div class="col-md-6 input-container">
+                    <select class="input" id="batch" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="1998">1998</option>
+                        <option value="1999">1999</option>
+                        <option value="2000">2000</option>
+                        <option value="2001">2001</option>
+                        <option value="2002">2002</option>
+                        <option value="2003">2003</option>
+                        <option value="2004">2004</option>
+                        <option value="2005">2005</option>
+                        <option value="2006">2006</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                        <option value="2009">2009</option>
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
+                        <option value="2027">2027</option>
+                        <option value="2028">2028</option>
+                        <option value="2029">2029</option>
+                        <option value="2030">2030</option>
+                    </select>
+                    <label for="batch" class="label">Batch <span class="mandatory">*</span></label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 input-container">
+                    <input type="email" class="input" id="email" autocomplete="off" placeholder=" " required>
+                    <label for="email" class="label">Email Address <span class="mandatory">*</span></label>
+                </div>
+                <div class="col-md-6 input-container">
+                    <div class="phone-group">
+                        <div class="phone-prefix" style="background-color: white;">+91</div>
+                        <input type="tel" class="input input-phone" id="mobile" placeholder=" " required>
+                        <label for="mobile" class="label">Mobile Number <span class="mandatory">*</span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 input-container">
+                    <input type="password" class="input" placeholder=" " id="password" required>
+                    <label for="password" class="label">Password <span class="mandatory">*</span></label>
+                    <i class="far fa-eye password-toggle" id="togglePassword"></i>
+                </div>
+                <div class="col-md-6 input-container">
+                    <input type="password" class="input" placeholder=" " id="confirmPassword" required>
+                    <label for="confirmPassword" class="label">Confirm Password <span class="mandatory">*</span></label>
+                    <i class="far fa-eye password-toggle" id="toggleConfirmPassword"></i>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 input-container">
+                    <input type="file" class="input" id="govt-id" placeholder=" " required>
+                    <label for="govt-id" class="label">Any Govt Proof ID (File format: PDF, Size Less Than 2MB) <span class="mandatory">*</span></label>
+                    <span class="blink_me" style="color:red">Upload Correct Document Without Password Protected to verify, Otherwise it will be rejected..!</span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6">
+                    <button type="reset" class="btn btn-danger btn-block" style="text-transform: uppercase;">Reset</button>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-success btn-block" style="text-transform: uppercase;">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="footer-wrapper">
+    <div class="footer-container">
+        <p>© 2024 Designed & Developed by <b>B S Shreesha</b>, JIT, Bengaluru. Karnataka. India.</p>
+    </div>
+</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const passwordToggle = document.querySelector('#togglePassword');
+    const confirmPasswordToggle = document.querySelector('#toggleConfirmPassword');
+    const password1Toggle = document.querySelector('#toggleLoginPassword');
+    
+    const password = document.querySelector('#password');
+    const confirmPassword = document.querySelector('#confirmPassword');
+    const password1 = document.querySelector('#login-password');
+
+    // Function to toggle password visibility
+    function togglePasswordVisibility(passwordField, toggleIcon) {
+        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordField.setAttribute('type', type);
+        toggleIcon.classList.toggle('fa-eye');
+        toggleIcon.classList.toggle('fa-eye-slash');
+    }
+
+    // Add event listeners for all password toggles
+    passwordToggle.addEventListener('click', function() {
+        togglePasswordVisibility(password, this);
+    });
+
+    confirmPasswordToggle.addEventListener('click', function() {
+        togglePasswordVisibility(confirmPassword, this);
+    });
+
+    password1Toggle.addEventListener('click', function() {
+        togglePasswordVisibility(password1, this);
+    });
+});
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const passwordField = document.getElementById('password');
+    const confirmPasswordField = document.getElementById('confirmPassword');
+
+    let passwordAlertShown = false;
+    let confirmPasswordAlertShown = false;
+
+    passwordField.addEventListener('focus', function () {
+        if (!passwordAlertShown) {
+            setTimeout(function () {
+                alert("Password Requirements:\n\n• At least one uppercase letter (A-Z)\n• At least one lowercase letter (a-z)\n• At least one number (0-9)\n• At least one special character (e.g., !@#$%^&*)");
+                passwordAlertShown = true;
+            }, 300);
+        }
+    });
+
+    confirmPasswordField.addEventListener('focus', function () {
+        if (!confirmPasswordAlertShown) {
+            setTimeout(function () {
+                const password = passwordField.value;
+                const confirmPassword = confirmPasswordField.value;
+
+                if (!password) {
+                    alert("Please enter your password first.");
+                } else if (password !== confirmPassword) {
+                    alert("Passwords do not match. Please ensure both passwords are the same.");
+                }
+                confirmPasswordAlertShown = true;
+            }, 300);
+        }
+    });
+});
+    </script>
+    </div>
+</div>
+
+<script>
+    // Show login form and hide other forms
+document.getElementById('loginBtn').addEventListener('click', function() {
+    document.getElementById('loginForm').style.display = 'block';
+    document.getElementById('signupForm').style.display = 'none';
+    document.getElementById('forgotPasswordForm').style.display = 'none';
+    this.classList.add('btn-primary');
+    this.classList.remove('btn-secondary');
+    document.getElementById('signupBtn').classList.add('btn-secondary');
+    document.getElementById('signupBtn').classList.remove('btn-primary');
+    document.getElementById('forgotPasswordBtn').classList.add('btn-secondary');
+    document.getElementById('forgotPasswordBtn').classList.remove('btn-primary');
+});
+
+// Show signup form and hide other forms
+document.getElementById('signupBtn').addEventListener('click', function() {
+    document.getElementById('signupForm').style.display = 'block';
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('forgotPasswordForm').style.display = 'none';
+    this.classList.add('btn-primary');
+    this.classList.remove('btn-secondary');
+    document.getElementById('loginBtn').classList.add('btn-secondary');
+    document.getElementById('loginBtn').classList.remove('btn-primary');
+    document.getElementById('forgotPasswordBtn').classList.add('btn-secondary');
+    document.getElementById('forgotPasswordBtn').classList.remove('btn-primary');
+});
+
+// Show forgot password form and hide other forms
+document.getElementById('forgotPasswordBtn').addEventListener('click', function() {
+    document.getElementById('forgotPasswordForm').style.display = 'block';
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('signupForm').style.display = 'none';
+    this.classList.add('btn-primary');
+    this.classList.remove('btn-secondary');
+    document.getElementById('loginBtn').classList.add('btn-secondary');
+    document.getElementById('loginBtn').classList.remove('btn-primary');
+    document.getElementById('signupBtn').classList.add('btn-secondary');
+    document.getElementById('signupBtn').classList.remove('btn-primary');
+});
+
+// Toggle visibility of the password field
+function togglePasswordVisibility(id) {
+    const passwordField = document.getElementById(id);
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+}
+</script>
+
+</body>
+</html>
