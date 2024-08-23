@@ -12,7 +12,7 @@ This project is a clean and responsive student login and signup form built using
 
 ## Getting Started
 
-To use this project, clone the repository and open the `index.html` file in your web browser.
+To use this project, clone the repository and open the `forgot.html` file in your web browser.
 
 ### Prerequisites
 
@@ -46,3 +46,4 @@ If you find this project helpful or interesting, please consider starring the re
 ---
 
 Thank you for using this student login and signup form. We hope it enhances your user authentication process!
+
