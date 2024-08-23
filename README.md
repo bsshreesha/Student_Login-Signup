@@ -47,3 +47,9 @@ If you find this project helpful or interesting, please consider starring the re
 
 Thank you for using this student login and signup form. We hope it enhances your user authentication process!
 
+## Output
+![image](https://github.com/user-attachments/assets/ebcd2e81-2ad6-4144-bfc8-de0d1128a396)
+![image](https://github.com/user-attachments/assets/64b37680-b73a-4921-a267-3e43143aa1ee)
+![image](https://github.com/user-attachments/assets/ac130c32-3618-49df-9f98-14f575ea030a)
+
+
