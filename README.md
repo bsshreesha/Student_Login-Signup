@@ -32,10 +32,6 @@ To toggle the password visibility, click the eye icon located in the password fi
 
 Contributions are welcome! Feel free to submit issues or pull requests if you have ideas for improvements or additional features.
 
-## License
-
-This project is licensed under the MIT License. For more information, see the [LICENSE](LICENSE) file.
-
 ## Acknowledgments
 
 - Bootstrap for the responsive design framework.
